@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import retry
 
 
-def get_data_meteo_api(
-        cities_with_coords: dict, weather_variables:list, start_date: str, end_date:str) -> dict:
+def get_data_meteo_api(cities_with_coords: dict, weather_variables:list, start_date: str, end_date:str) -> pd.DataFrame:
 
     url = "https://archive-api.open-meteo.com/v1/archive?"
     openmeteo = openmeteo_requests.Client()
@@ -40,7 +39,7 @@ def get_data_meteo_api(
    
     return df
 
-def process_meteo_time_series(df):
+def process_meteo_time_series(df) -> pd.DataFrame:
 
     df['year_month'] = df['date'].dt.strftime('%Y-%m')
     df = df.drop(columns=['date'])
@@ -58,7 +57,7 @@ def process_meteo_time_series(df):
 
     return monthly_agg
 
-def plot_meteo_temperature_time_series(df):
+def plot_meteo_temperature_time_series(df) -> plt:
     variables = {"temperature":{"metric":"Average","measure":"°C"},
                     "precipitation":{"metric":"Total","measure":"mm"},
                     "wind":{"metric":"Max","measure":"km/h"}}
