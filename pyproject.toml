@@ -22,6 +22,9 @@ boto3 = "^1.36.6"
 ipykernel = "^6.29.5"
 python-dotenv = "^1.0.1"
 pyarrow = "^19.0.0"
+seaborn = "^0.13.2"
+jupyter = "^1.1.1"
+aws = "^0.2.5"
 
 
 [tool.poetry.group.dev.dependencies]
